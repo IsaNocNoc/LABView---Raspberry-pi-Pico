@@ -28,6 +28,3 @@ while True:
                 bit_to_pin[i].on()
                 
         sleep_ms(100)
-
-        
-
