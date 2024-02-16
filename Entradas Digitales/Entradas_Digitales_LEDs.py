@@ -14,13 +14,16 @@ uart = UART(0, baudrate=115200, rx=Pin(1), tx=Pin(0))
 msegi = utime.ticks_ms()
 
 while True:
-    var1 = pinbutton1.value()
-    var2 = pinbutton2.value()
-    var3 = pinbutton3.value()
-    var4 = pinbutton4.value()
-    
-    msegf = utime.ticks_ms()
-    if utime.ticks_diff(msegf, msegi) >= 100:
-        msegi = msegf
-        uart.write('{},{},{},{}\n'.format(var1, var2, var3, var4))
-    sleep_ms(100)
+    try:
+        var1 = pinbutton1.value()
+        var2 = pinbutton2.value()
+        var3 = pinbutton3.value()
+        var4 = pinbutton4.value()
+        
+        msegf = utime.ticks_ms()
+        if utime.ticks_diff(msegf, msegi) >= 100:
+            msegi = msegf
+            uart.write('{},{},{},{}\n'.format(var1, var2, var3, var4))
+        sleep_ms(100)
+    except Exception as e:
+        print("Ha ocurrido un error: ", e)
